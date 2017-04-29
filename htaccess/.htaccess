@@ -1,0 +1,67 @@
+RewriteEngine on
+
+
+# Remove www
+RewriteCond %{HTTP_HOST} ^diegoteliz\.tk$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.diegoteliz\.com$ [OR]
+RewriteCond %{HTTP_HOST} ^www\.diegoteliz\.tk$
+RewriteRule ^/?$ "http\:\/\/diegoteliz\.com" [R=301,L]
+
+
+# HTML5 pushstate (history) support:
+<ifModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteCond %{REQUEST_URI} !index
+    RewriteRule (.*) index.html [L]
+</ifModule>
+
+
+# Redirections
+Redirect /subdomain http://external.url
+
+
+###################### WordPress ######################
+
+# WordPress permalinks
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /index.php [L]
+</IfModule>
+
+# Restrict access to "wp-content" folder
+Order deny,allow
+Deny from all
+<Files ~ ".(php|lock|xml|css|jpe?g|png|gif|js)$">
+Allow from all
+</Files>
+
+#Prevent SQL injections
+Options +FollowSymLinks
+RewriteEngine On
+RewriteCond %{QUERY_STRING} (\<|%3C).*script.*(\>|%3E) [NC,OR]
+RewriteCond %{QUERY_STRING} GLOBALS(=|\[|\%[0-9A-Z]{0,2}) [OR]
+RewriteCond %{QUERY_STRING} _REQUEST(=|\[|\%[0-9A-Z]{0,2})
+RewriteRule ^(.*)$ index.php [F,L]
+
+#Prevent folder scanning
+Options All -Indexes
+
+#Protect wp-config file
+<files wp-config.php>
+order allow,deny
+deny from all
+</files>
+
+# Protect htaccess file
+<files .htaccess>
+order allow,deny
+deny from all
+</files>
+
+###################### END WordPress ######################
