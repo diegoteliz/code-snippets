@@ -20,3 +20,6 @@ RewriteRule ^/?$ "http\:\/\/diegoteliz\.com" [R=301,L]
 
 # Redirections
 Redirect /subdomain http://external.url
+
+
+# WordPress .htaccess rules: see 'wordpress' directory

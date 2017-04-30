@@ -26,7 +26,7 @@ _A list of useful code snippets for Frontend and Backend development._
 - Remove items from admin menu
 - Remove width/height dimensions from `<img>` tags
 - Remove `<div>`surrounding dynamic navigation to cleanup markup
-- htaccess for WordPress _(see htaccess section)_
+- htaccess for WordPress
 
 ### Miscellaneous
 - htaccess
