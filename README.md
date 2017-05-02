@@ -29,4 +29,5 @@ _A list of useful code snippets for Frontend and Backend development._
 - htaccess for WordPress
 
 ### Miscellaneous
+- Password Protect for a Website or Subdirectory
 - htaccess
