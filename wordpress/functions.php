@@ -93,8 +93,7 @@ function add_menuclass( $ulclass ) {
 add_filter( 'wp_nav_menu' , 'add_menuclass' );
 
 
-// Replace Posts label as News in Admin Panel 
-
+// Rename 'Posts' label as 'News' in Admin Panel 
 function change_post_menu_label() {
     global $menu;
     global $submenu;
@@ -119,6 +118,33 @@ function change_post_object_label() {
 }
 add_action( 'init' , 'change_post_object_label' );
 add_action( 'admin_menu' , 'change_post_menu_label' );
+
+
+// Rename 'Page' label as 'News' in Admin Panel 
+function change_page_menu_label() {
+    global $menu;
+    global $submenu;
+    $menu[ 20 ][ 0 ] = 'News';
+    $submenu[ 'edit.php' ][ 5 ][ 0 ] = 'News';
+    $submenu[ 'edit.php' ][ 10 ][ 0 ] = 'Add News';
+    echo '';
+}
+function change_page_object_label() {
+    global $wp_post_types;
+    $labels = &$wp_post_types[ 'page' ]->labels;
+    $labels->name = 'News';
+    $labels->singular_name = 'News';
+    $labels->add_new = 'Add News';
+    $labels->add_new_item = 'Add News';
+    $labels->edit_item = 'Edit News';
+    $labels->new_item = 'News';
+    $labels->view_item = 'View News';
+    $labels->search_items = 'Search News';
+    $labels->not_found = 'No News found';
+    $labels->not_found_in_trash = 'No News found in Trash';
+}
+add_action( 'init' , 'change_page_object_label' );
+add_action( 'admin_menu' , 'change_page_menu_label' );
 
 
 // Remove items from admin menu

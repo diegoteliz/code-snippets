@@ -22,6 +22,7 @@ _A list of useful code snippets for Frontend and Backend development._
 - Create taxonomy
 - Custom login logo
 - Custom class names to menu item links
+- Rename 'Page' label in Admin Panel
 - Rename 'Posts' label in Admin Panel
 - Remove items from admin menu
 - Remove width/height dimensions from `<img>` tags
